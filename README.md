@@ -1,6 +1,14 @@
 # HopfieldNetwork
 # Setup 
 
+##### Requirements
+```
+ghc ( if you want to build the API yourself )
+raku 
+zef 
+```
+
+
 ##### all you need to do is run the file :
 ```
 git clone [this repo]
@@ -10,8 +18,11 @@ setup.bat
 ```
 zef install JSON::Tiny
 zef install Terminal::ANSIColor
+ghc main.hs 
 ```
 
+# Last Updates : 
+* Implementation of native **Haskell API** to process the **binary vectors** and transformations 
 
 # Some theory : 
 ##### The theory behind Hopfield Networks can be found here : 
@@ -71,5 +82,4 @@ $mode.loadModel("mynet") # here goes the name of the json exported from model
 ```
 ### Future goals :
 * Implementation of **zef** or **panda** module 
-* Implementation of native **C API** to process the **binary vectors** and transformations
 * Implementation of higher features from **Hopfield Models** and variations 
