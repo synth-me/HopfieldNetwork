@@ -2,20 +2,17 @@ use JSON::Tiny;
 use Terminal::ANSIColor;
 
 
-sub equalityProb(Array $vector0,Array $vector1 --> Rat) {
-# here we compare each of the vectors against the equivalent one 
-# from the source vector 
-    my Int $l0 = $vector0.elems;
-    my Int $p = 0 ;
-    for 0..$vector0.elems-1 {
-        my Int $i = $vector0[$_];
-        my Int $v = $vector1[$_];
-        if $i == $v {$p+=1;}else{$p+=-1;}
-    }
-    my Rat $f = ($p/$l0)*100;
-    if $f < 0.0 {$f = 0.0};
-    return $f;
-}
+sub API_acess(Array $vector0,Array $vector1-->Rat) {
+# here we acess the HASKELL api that will process the cells 
+# faster than perl6 because those are pure functional processes
+    my Str $a = join ",",@($vector0);
+    my Str $b = join ",",@($vector1);
+    my $r = run "main.exe",$a,$b,:out;  
+    my $e = $r.out.slurp;
+    my $ef = join "", (split "\n", $e);
+    return Rat($ef);
+};
+
 
 sub CompareVectors(Array $VectorSource,Array $VectorTarget --> Rat){
 # given that arrays are mulitidimensional we need to iterate over each of them 
@@ -24,7 +21,7 @@ sub CompareVectors(Array $VectorSource,Array $VectorTarget --> Rat){
     for 0..$VectorSource.elems-1 {
         my Array $f0 = $VectorSource[$_];
         my Array $f1 = $VectorTarget[$_];
-        my Rat $e = equalityProb $f0, $f1;
+        my Rat $e = API_acess $f0, $f1;
         $p.push($e) ;
     }
     my Rat $w = (map({.sum},$p)[0])/$p.elems;
