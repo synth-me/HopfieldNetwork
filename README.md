@@ -23,6 +23,7 @@ ghc main.hs
 
 # Last Updates : 
 * Implementation of native **Haskell API** to process the **binary vectors** and transformations 
+* if you do not want to compile the API download the exe here : [My drive!](https://drive.google.com/file/d/1NK4NBEDztFvxiZbZWbyaWBMG9gOC7BJc/view?usp=sharing)
 
 # Some theory : 
 ##### The theory behind Hopfield Networks can be found here : 
